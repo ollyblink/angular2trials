@@ -1,0 +1,37 @@
+<div class="container">
+  <div>
+    <span>{{message}}</span>
+  </div>
+  <div  *ngIf="usersToConsent.length > 0">
+    <br/>
+    <h2>Choose a user to grant data access to</h2>
+
+    <form (ngSubmit)="grantDataAccess()">
+      <div class="form-group">
+        <select class="form-control" (change)="onChange($event.target.value)">
+          <option></option>
+          <option *ngFor="let user of usersToConsent">{{user}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <br/>
+  <!--TODO Refactor into own component/view-->
+  <div *ngIf="sentUsers.length > 0">
+    <h2>The following users can view your data</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Username</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of sentUsers">
+        <td>{{user}}</td>
+        <td>[<a (click)="deleteSentUser(user)">x</a>]</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+
+  <h2>Choose a user to view their data</h2>
+
+  <select class="form-control" (change)="onChange($event.target.value)" >
+    <option></option>
+    <option *ngFor="let user of consentedUsers">{{user}}</option>
+  </select>
+
+  <div *ngIf="selectedUser">
+    <h2>Data of user {{user}}</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Added on</th>
+        <th>FVC</th>
+        <th>FEV 1</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of spirometryData">
+        <td>{{data.title}}</td>
+        <td>{{data.dateTime}}</td>
+        <td>{{data.fvc}}</td>
+        <td>{{data.fev1}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
