@@ -4,6 +4,10 @@
   <br/>
   <h2>User {{user}}: data</h2>
   <p>Below you can see all your added data sets</p>
+
+  <div>
+    Allow other users to view my data: <a (click)="grantConsent()">[click here]</a>
+  </div>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -50,7 +54,4 @@
 
 
 
-  <div>
-    <a (click)="grantConsent()">Grant consent to user so they can watch your data</a>
-  </div>
 </div>

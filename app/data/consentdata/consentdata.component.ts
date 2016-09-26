@@ -10,9 +10,9 @@ import {Data} from "../../models/data";
 })
 
 export class ConsentDataComponent implements OnInit {
-  private user: string;
-  private spirometryData: Data[];
-  private consentedUsers: string[];
+  private user: string ="";
+  private spirometryData: Data[] = [];
+  private consentedUsers: string[] = [];
   private selectedUser: string;
 
   public constructor(private consentDataService: ConsentDataService) {

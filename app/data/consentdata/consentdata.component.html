@@ -1,12 +1,15 @@
 <div class="container">
 
-  <h2>Choose a user to view their data</h2>
-
-  <select class="form-control" (change)="onChange($event.target.value)" >
-    <option></option>
-    <option *ngFor="let user of consentedUsers">{{user}}</option>
-  </select>
-
+  <div *ngIf="consentedUsers.length > 0">
+    <h2>Choose a user to view their data</h2>
+    <select class="form-control" (change)="onChange($event.target.value)">
+      <option></option>
+      <option *ngFor="let user of consentedUsers">{{user}}</option>
+    </select>
+  </div>
+  <div *ngIf="!consentedUsers || consentedUsers.length == 0">
+    <h2>No users allowed you access to their data!</h2>
+  </div>
   <div *ngIf="selectedUser">
     <h2>Data of user {{user}}</h2>
     <table class="table table-striped">

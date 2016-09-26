@@ -47,7 +47,7 @@ export class GrantConsentService {
   //TODO: Refactor into own service (GrantConsentComponent)
   public getSentUsers(): Promise<string[]> {
     if (localStorage.getItem('user')) {
-      return this.http.get(this.url + '/sent', {withCredentials: true})
+      return this.http.get(this.url + 'sent', {withCredentials: true})
         .map((res: Response) => res.json().consentedUsers)
         .toPromise()
         .catch(ErrorHandler.handleError);
@@ -58,7 +58,7 @@ export class GrantConsentService {
 
   public deleteSentUser(receiver: string): Promise<string> {
     if (localStorage.getItem('user')) {
-      return this.http.delete(this.url + '/sender/'+localStorage.getItem('user')+"/receiver/"+receiver, {withCredentials: true})
+      return this.http.delete(this.url + 'sender/'+localStorage.getItem('user')+"/receiver/"+receiver, {withCredentials: true})
         .map((res: Response) => res.json().message)
         .toPromise()
         .catch(ErrorHandler.handleError);
