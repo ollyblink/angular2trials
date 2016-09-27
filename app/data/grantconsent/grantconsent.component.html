@@ -4,7 +4,7 @@
   </div>
   <div  *ngIf="usersToConsent.length > 0">
     <br/>
-    <h2>Choose a user to grant data access to</h2>
+    <p>Choose a user to grant data access to</p>
 
     <form (ngSubmit)="grantDataAccess()">
       <div class="form-group">
@@ -18,7 +18,7 @@
   <br/>
   <!--TODO Refactor into own component/view-->
   <div *ngIf="sentUsers.length > 0">
-    <h2>The following users can view your data</h2>
+    <p>The following users can view your data</p>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -29,7 +29,7 @@
       <tbody>
       <tr *ngFor="let user of sentUsers">
         <td>{{user}}</td>
-        <td>[<a (click)="deleteSentUser(user)">x</a>]</td>
+        <td><a (click)="deleteSentUser(user)">remove consent</a></td>
       </tr>
       </tbody>
     </table>

@@ -10,6 +10,8 @@ import {GrantConsentService} from "./grantconsent.service";
 
 export class GrantConsentComponent implements OnInit {
   private usersToConsent: string[] = [];
+  private sentUsers: string[] = [];
+
   private message: string;
 
   public constructor(private grantConsentService: GrantConsentService) {
@@ -38,9 +40,6 @@ export class GrantConsentComponent implements OnInit {
   }
 
 
-  //TODO: refactor into own view
-  private sentUsers: string[] = [];
-
   public getSentUsers(): void {
     this.grantConsentService.getSentUsers().then(sentUsers => this.sentUsers = sentUsers);
   }
@@ -51,7 +50,5 @@ export class GrantConsentComponent implements OnInit {
       this.ngOnInit();//reload
     });
   }
-
-  //END TODO
 
 }

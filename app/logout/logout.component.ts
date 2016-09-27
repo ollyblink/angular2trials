@@ -17,7 +17,7 @@ export class LogoutComponent implements OnInit {
   }
 
   public logout(): void {
-    this.logoutService.logout().then(json=> this.message = json.message);
+    this.logoutService.logout().then(message => this.message = message);
   }
 
   ngOnInit(): void {

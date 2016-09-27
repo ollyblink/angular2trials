@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component} from "@angular/core";
 import {User} from "../models/user";
 import {RegisterService} from "./register.service";
 import {Router} from '@angular/router';
@@ -10,9 +10,11 @@ import {Router} from '@angular/router';
   providers: [RegisterService]
 })
 export class RegisterComponent {
+  static WAITING_TEXT: string = "Registering new user... This may take a while (10 - 20 seconds), please be patient! You will be redirected to the login page on success.";
 
-
-  private message: string;
+  /** Message from the server to be displayed */
+  private message: string = "";
+  /** Model that is altered in the form and then sent to the server to register a new user */
   private userModel = new User("", "");
 
 
@@ -21,8 +23,8 @@ export class RegisterComponent {
 
 
   register(): void {
-    this.message = "Waiting for response";
-    this.registerService.register(this.userModel.username, this.userModel.password).then(message => {
+    this.message = RegisterComponent.WAITING_TEXT;
+    this.registerService.register(this.userModel).then(message => {
       this.message = message;
       let link = ['/login'];
       this.router.navigate(link);

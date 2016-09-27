@@ -1,40 +1,41 @@
 <div class="container">
 
-  <span>{{message}}</span>
-  <br/>
-  <h2>User {{user}}: data</h2>
-  <p>Below you can see all your added data sets</p>
-
-  <div>
-    Allow other users to view my data: <a (click)="grantConsent()">[click here]</a>
+  <p>{{message}}</p>
+  <div *ngIf="spirometryData.length > 0">
+    <br/>
+    <h2>User {{user}}: data</h2>
+    <p>
+      Allow other users to view my data: <a (click)="showGrantConsent()">[click here]</a>
+    </p>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Added on</th>
+        <th>FVC</th>
+        <th>FEV 1</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of spirometryData">
+        <td>{{data.title}}</td>
+        <td>{{data.dateTime}}</td>
+        <td>{{data.fvc}}</td>
+        <td>{{data.fev1}}</td>
+        <td><a (click)="deleteDataItem(data.title)">delete</a></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>Added on</th>
-      <th>FVC</th>
-      <th>FEV 1</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of spirometryData">
-      <td>{{data.title}}</td>
-      <td>{{data.dateTime}}</td>
-      <td>{{data.fvc}}</td>
-      <td>{{data.fev1}}</td>
-      <td><a (click)="deleteItem(data.title)">delete</a></td>
-    </tr>
-    </tbody>
-  </table>
-
-  <br/>
   <div class="additem">
+    <br/>
     <a (click)="showAddItem()" *ngIf="!isAddItemShown">Add new data item</a>
+    <br/>
     <a (click)="showAddItem()" *ngIf="isAddItemShown">Hide add new data item</a>
+    <br/>
     <div *ngIf="isAddItemShown">
-      <form (ngSubmit)="addItem()">
+      <form (ngSubmit)="addDataItem()">
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text" class="form-control" id="title" required [(ngModel)]="dataItem.title" name="title">
@@ -51,7 +52,4 @@
       </form>
     </div>
   </div>
-
-
-
 </div>
